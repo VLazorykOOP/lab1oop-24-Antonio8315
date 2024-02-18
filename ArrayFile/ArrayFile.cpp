@@ -1,17 +1,10 @@
 ﻿ // ArrayFile.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
 #include <iostream>
 #include <fstream>
 #include <ios>
 #include <vector>
-
 #include <time.h>
-///
-////
-
-
-
 
 using namespace std;
 
@@ -238,7 +231,6 @@ void ArrayLocal()
         switch (ch) {
         case '1': cout << " 1 "; break;
         case '2': cout << " 2 "; break;
-            //
         case '5': return;
         }
         cout << " Press any key and enter\n";
@@ -250,38 +242,149 @@ void ArrayLocal()
 
 int main()
 { 
+    // Завдання 1
+    std::cout << "Nomer 1: \n";
+    int N;
+    std::cout << "Input N: ";
+    std::cin >> N;
     
-    
-    
-    const int MAX_SIZE = 560;
-    std::cout << "Hello World!\n";
-    ShowMainMenu();
-    /*
-    double A[MAX_SIZE], B[MAX_SIZE],C[MAX_SIZE];
-    int n,m;
-    n = RndInputArray(MAX_SIZE, A);
-    WriteArrayTextFile(n, A, "1.txt");
-    m = ReadArrayTextFile(MAX_SIZE, B, "1.txt");
-    cout << " \n m= " << m << endl;
-    for (int i = 0; i < m; i++)
-        cout << B[i] << "   ";
-    WriteArrayBinFile(n, A, "1.bin");
-    m = ReadArrayBinFile(MAX_SIZE, C, "1.bin");
-    cout << " \n m= " << m << endl;
-    for (int i = 0; i < m; i++)
-        cout << C[i] << "   ";
-    cout << "\n  Vector \n";
-    vector<double> vA;
-    ConsoleInputVector(MAX_SIZE, vA);
-    for (auto v : vA) {
-        cout << v << "   ";
+    std::vector<int> A(N);
+    std::cout << "Input array A:\n";
+    for (int i = 0; i < N; ++i)
+    {
+        std::cout << "A[" << i << "]: ";
+        std::cin >> A[i];
     }
-*/
-    TaskV();
-    return 1;
 
+    std::vector<int> B;
+    for (int i = 0; i < N; ++i)
+    {
+        if (A[i] >= 0)
+        {
+            B.push_back(A[i]);
+        }
+    }
+
+    std::cout << "Array B with +elements  A:\n";
+    for (int i = 0; i < B.size(); ++i)
+    {
+        std::cout << "B[" << i << "]: " << B[i] << "\n";
+    }
+
+    // Завдання 2
+    std::cout << "Nomer 2: \n";
+    int T, MAX = -1, k = 0;
+    std::cout << "Input T: \n";
+    std::cin >> T;
+
+    for (int i = 0; i < N; ++i)
+    {
+        if (A[i] >= 0)
+        {
+            if (A[i] >= MAX)
+            {
+                MAX = A[i];
+                k = i;
+            }
+        }
+    }
+    if (MAX >= 0)
+    {
+        if (MAX > T)
+        {
+            std::cout << "Max +element: " << MAX << "\n";
+            std::cout << "Index: " << k-1 << "\n";
+        }
+        else
+        {
+            std::cout << "! No element highter T ! \n";
+        }
+    }
+    else
+    {
+        std::cout << "! No +element ! \n";
+    }
+
+    // Завдання 3
+    std::cout << "Nomer 3: \n";
+    float a, b;
+    std::cout << "Input a, b (a < b): \n";
+    std::cin >> a;
+    std::cin >> b;
+    if (a > b)
+    {
+        std::cout << "! a must be > b ! \n";
+    }
+    else
+    {
+        int n;
+        int sum = 0, dob = 1;
+        std::cout << "Input n <= 200: ";
+        std::cin >> n;
+        if (n > 200)
+        {
+            std::cout << "! n must be <= 200 ! \n";
+        }
+        else
+        {
+            std::vector<int> X(n);
+            std::cout << "Input array X:\n";
+            for (int i = 1; i <= n; i++)
+            {
+                std::cout << "X[" << i << "]: ";
+                std::cin >> X[i];
+            }
+            int MAX = X[1], MIN = X[1];
+            for (int i = 1; i <= n; ++i)
+            {
+                if (X[i] < a)
+                {
+                    sum = sum + X[i];
+                }
+                if (X[i] > b)
+                {
+                    dob = dob * X[i];
+                }
+                if (X[i] > MAX)
+                {
+                    MAX = X[i];
+                }
+                if (X[i] < MIN)
+                {
+                    MIN = X[i];
+                }
+            }
+            std::cout << "Sum elements < a: " << sum << "\n";
+            std::cout << "Dobutok elements > b: " << dob << "\n";
+            std::cout << "Max element: " << MAX << "\n";
+            std::cout << "Min element: " << MIN << "\n";
+            
+            /*
+            double A[MAX_SIZE], B[MAX_SIZE],C[MAX_SIZE];
+            int n,m;
+            n = RndInputArray(MAX_SIZE, A);
+            WriteArrayTextFile(n, A, "1.txt");
+            m = ReadArrayTextFile(MAX_SIZE, B, "1.txt");
+            cout << " \n m= " << m << endl;
+            for (int i = 0; i < m; i++)
+                cout << B[i] << "   ";
+            WriteArrayBinFile(n, A, "1.bin");
+            m = ReadArrayBinFile(MAX_SIZE, C, "1.bin");
+            cout << " \n m= " << m << endl;
+            for (int i = 0; i < m; i++)
+                cout << C[i] << "   ";
+            cout << "\n  Vector \n";
+            vector<double> vA;
+            ConsoleInputVector(MAX_SIZE, vA);
+            for (auto v : vA) {
+                cout << v << "   ";
+            }
+           */
+            TaskV();
+            return 1;
+        }
+    }
 }
-
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
