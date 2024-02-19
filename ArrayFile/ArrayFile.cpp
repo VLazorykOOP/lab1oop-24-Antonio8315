@@ -7,7 +7,6 @@
 #include <time.h>
 
 using namespace std;
-int rrr;
 
 typedef double* pDouble;
 /*
@@ -245,10 +244,12 @@ int main()
 { 
     // Завдання 1
     std::cout << "Nomer 1: \n";
+    //введення N
     int N;
     std::cout << "Input N: ";
     std::cin >> N;
     
+    //Оголошення та введення масиву А
     std::vector<int> A(N);
     std::cout << "Input array A:\n";
     for (int i = 0; i < N; ++i)
@@ -257,6 +258,7 @@ int main()
         std::cin >> A[i];
     }
 
+    //Оголошення та створення масиву В
     std::vector<int> B;
     for (int i = 0; i < N; ++i)
     {
@@ -265,7 +267,7 @@ int main()
             B.push_back(A[i]);
         }
     }
-
+    //Виведення масиву В
     std::cout << "Array B with +elements  A:\n";
     for (int i = 0; i < B.size(); ++i)
     {
@@ -274,33 +276,37 @@ int main()
 
     // Завдання 2
     std::cout << "Nomer 2: \n";
+    //Оголошення змінних, введення Т
     int T, MAX = -1, k = 0;
     std::cout << "Input T: \n";
     std::cin >> T;
-
+    //Початок перевірки елементів списку А
     for (int i = 0; i < N; ++i)
-    {
+    {   //Перевірка чи елемент додатній
         if (A[i] >= 0)
-        {
+        {   //Перевірка чи більший новий елемент MAX більший за минулий
             if (A[i] >= MAX)
-            {
+            {   //Якщо умови виконані, новий ел. стає MAX, записується індекс елементу
                 MAX = A[i];
                 k = i;
             }
         }
     }
+    //Перевірка отриманого MAX (чи додатній)
     if (MAX >= 0)
-    {
+    {   //Перевірка, чи більший за змінну Т
         if (MAX > T)
-        {
+        {   //Якщо умови виконані - виведення MAX елементу і його індексу
             std::cout << "Max +element: " << MAX << "\n";
             std::cout << "Index: " << k-1 << "\n";
         }
+        //Якщо MAX менше 0 (залишилося -1) - виводить помилку
         else
         {
             std::cout << "! No element highter T ! \n";
         }
     }
+    //Якщо MAX менше за Т - виводить помилку
     else
     {
         std::cout << "! No +element ! \n";
@@ -308,26 +314,29 @@ int main()
 
     // Завдання 3
     std::cout << "Nomer 3: \n";
+    //Оголошення та введення змінних
     float a, b;
     std::cout << "Input a, b (a < b): \n";
     std::cin >> a;
     std::cin >> b;
+    //Порівняння змінних а і b, якщо a > b - виводить помилку
     if (a > b)
     {
         std::cout << "! a must be > b ! \n";
     }
     else
-    {
+    {   //введення потрібних змінних
         int n;
         int sum = 0, dob = 1;
         std::cout << "Input n <= 200: ";
         std::cin >> n;
+        //Перевірка, чи n < 200, якщо ні - виводить помилку
         if (n > 200)
         {
             std::cout << "! n must be <= 200 ! \n";
         }
-        else
-        {
+        else   
+        {   //Оголошення та введення масиву Х
             std::vector<int> X(n);
             std::cout << "Input array X:\n";
             for (int i = 1; i <= n; i++)
@@ -335,26 +344,32 @@ int main()
                 std::cout << "X[" << i << "]: ";
                 std::cin >> X[i];
             }
+            //Введення змінних
             int MAX = X[1], MIN = X[1];
+            //В одному циклі обчислюємо 4 потрібні значення 4 змінних
             for (int i = 1; i <= n; ++i)
-            {
+            {   //Значення змінної sum
                 if (X[i] < a)
                 {
                     sum = sum + X[i];
                 }
+                //Значення змінної dob
                 if (X[i] > b)
                 {
                     dob = dob * X[i];
                 }
+                //Значення змінної MAX
                 if (X[i] > MAX)
                 {
                     MAX = X[i];
                 }
+                //Значення змінної MIN
                 if (X[i] < MIN)
                 {
                     MIN = X[i];
                 }
             }
+            //Виведення змінних
             std::cout << "Sum elements < a: " << sum << "\n";
             std::cout << "Dobutok elements > b: " << dob << "\n";
             std::cout << "Max element: " << MAX << "\n";
