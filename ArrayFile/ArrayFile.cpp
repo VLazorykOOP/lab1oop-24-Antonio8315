@@ -7,6 +7,7 @@
 #include <time.h>
 
 using namespace std;
+int rrr;
 
 typedef double* pDouble;
 /*
